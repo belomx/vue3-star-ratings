@@ -1,6 +1,6 @@
 {
-  "name": "vue3-star-ratings",
-  "version": "1.0.8",
+  "name": "vuejs3-star-ratings",
+  "version": "1.0.9",
   "license": "MIT",
   "description": "A simple, customizable vue3 component for star ratings",
   "main": "dist/vue3-star-ratings.ssr.js",

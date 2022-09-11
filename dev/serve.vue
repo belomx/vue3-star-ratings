@@ -27,7 +27,7 @@ export default defineComponent({
     </p>
     <vue3-star-ratings
       v-model="rate"
-      :step="0.5"
+      :step="1"
       :starSize="'34'"
       :disableClick="false"
       :controlSize="'23'"

@@ -183,13 +183,17 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   },
   computed: {
     roundedRating: function roundedRating() {
-      return this.rounded(this.rating, 1);
+      return this.rounded(this.rating, this.countDecimals(this.step));
     },
     percent: function percent() {
       return this.roundedRating / this.numberOfStars * 100 + "%";
     }
   },
   methods: {
+    countDecimals: function countDecimals(value) {
+      if (Math.floor(value.valueOf()) === value.valueOf()) return 0;
+      return value.toString().split(".")[1].length || 0;
+    },
     increaseRating: function increaseRating() {
       if (this.rating < this.numberOfStars) {
         this.rating += this.step;
@@ -213,8 +217,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
       }
     },
     rounded: function rounded(value, decimalPlaces) {
-      var power = Math.pow(10, decimalPlaces);
-      return Math.round(value * power) / power;
+      if (decimalPlaces > 0) {
+        var power = Math.pow(10, decimalPlaces);
+        return Math.round(value * power) / power;
+      }
+
+      return Math.ceil(value);
     },
     numberMinusFifteenPercent: function numberMinusFifteenPercent(value) {
       var num = +value;
@@ -235,9 +243,9 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
       self.rating = relativeX / this.offsetWidth * self.numberOfStars;
     });
   }
-});var _withId = /*#__PURE__*/vue.withScopeId("data-v-76dea496");
+});var _withId = /*#__PURE__*/vue.withScopeId("data-v-125902f7");
 
-vue.pushScopeId("data-v-76dea496");
+vue.pushScopeId("data-v-125902f7");
 
 var _hoisted_1 = {
   class: "vue3-star-ratings__wrapper"
@@ -338,9 +346,9 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   } else {
     style.appendChild(document.createTextNode(css));
   }
-}var css_248z = "\n.vue3-star-ratings__wrapper[data-v-76dea496] {\n  display: block;\n  margin: 25px auto;\n  text-align: center;\n  padding: 25px;\n}\n.vue3-star-ratings[data-v-76dea496] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.vue3-star-ratings button[data-v-76dea496] {\n  border: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 50%;\n  cursor: pointer;\n}\n.vue3-star-ratings button svg[data-v-76dea496] {\n  fill: currentColor;\n}\n.stars[data-v-76dea496] {\n  display: inline-block;\n  position: relative;\n  overflow: hidden;\n  margin: 0 auto;\n}\n.stars-outer[data-v-76dea496],\n.stars-inner[data-v-76dea496] {\n  height: inherit;\n}\n.stars-inner[data-v-76dea496] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 0;\n  max-width: 100%;\n  min-width: 0;\n  white-space: nowrap;\n  transition: 320ms cubic-bezier(0.075, 0.82, 0.165, 1);\n  overflow: hidden;\n}\n.stars svg[data-v-76dea496] {\n  display: inline-block;\n  fill: currentColor;\n  cursor: pointer;\n}\n";
+}var css_248z = "\n.vue3-star-ratings__wrapper[data-v-125902f7] {\n  display: block;\n  margin: 25px auto;\n  text-align: center;\n  padding: 25px;\n}\n.vue3-star-ratings[data-v-125902f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.vue3-star-ratings button[data-v-125902f7] {\n  border: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 50%;\n  cursor: pointer;\n}\n.vue3-star-ratings button svg[data-v-125902f7] {\n  fill: currentColor;\n}\n.stars[data-v-125902f7] {\n  display: inline-block;\n  position: relative;\n  overflow: hidden;\n  margin: 0 auto;\n}\n.stars-outer[data-v-125902f7],\n.stars-inner[data-v-125902f7] {\n  height: inherit;\n}\n.stars-inner[data-v-125902f7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 0;\n  max-width: 100%;\n  min-width: 0;\n  white-space: nowrap;\n  transition: 320ms cubic-bezier(0.075, 0.82, 0.165, 1);\n  overflow: hidden;\n}\n.stars svg[data-v-125902f7] {\n  display: inline-block;\n  fill: currentColor;\n  cursor: pointer;\n}\n";
 styleInject(css_248z);script.render = render;
-script.__scopeId = "data-v-76dea496";// Import vue component
+script.__scopeId = "data-v-125902f7";// Import vue component
 
 // Default export is installable instance of component.
 // IIFE injects install function into component, allowing component
