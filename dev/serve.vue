@@ -12,6 +12,11 @@ export default defineComponent({
       rate: 4.2,
     };
   },
+  methods: {
+    updateRating (e: any) {
+      console.info('teste update action - ', e)
+    }
+  }
 });
 </script>
 
@@ -22,11 +27,13 @@ export default defineComponent({
     </p>
     <vue3-star-ratings
       v-model="rate"
+      :step="0.5"
       :starSize="'34'"
       :disableClick="false"
       :controlSize="'23'"
       inactiveColor="deeppink"
       starColor="blue"
+      @update:modelValue="updateRating"
     />
   </div>
 </template>

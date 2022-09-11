@@ -62,13 +62,17 @@ export default defineComponent({
   },
   computed: {
     roundedRating(): number {
-      return this.rounded(this.rating, 1);
+      return this.rounded(this.rating, this.countDecimals(this.step));
     },
     percent(): string {
       return (this.roundedRating / this.numberOfStars) * 100 + "%";
     },
   },
   methods: {
+    countDecimals(value: Number) {
+      if(Math.floor(value.valueOf()) === value.valueOf()) return 0;
+      return value.toString().split(".")[1].length || 0; 
+    },
     increaseRating() {
       if (this.rating < this.numberOfStars) {
         this.rating += this.step;
@@ -90,10 +94,12 @@ export default defineComponent({
         this.rating = 0;
       }
     },
-
     rounded(value: number, decimalPlaces: number) {
-      const power = 10 ** decimalPlaces;
-      return Math.round(value * power) / power;
+      if (decimalPlaces > 0) {
+        const power = 10 ** decimalPlaces;      
+        return Math.round(value * power) / power;
+      }
+      return Math.ceil(value);
     },
     numberMinusFifteenPercent(value: string) {
       const num = +value;
